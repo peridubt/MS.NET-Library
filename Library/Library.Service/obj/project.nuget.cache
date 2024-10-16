@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "j2U4AI3gAC8=",
+  "dgSpecHash": "ZfU9jriZVl4=",
   "success": true,
-  "projectFilePath": "D:\\!MOAISdocs\\!Labs and lectures\\Labs 3rd year\\MS.NET-Library\\Library\\Library\\Library.csproj",
+  "projectFilePath": "D:\\!MOAISdocs\\!Labs and lectures\\Labs 3rd year\\MS.NET-Library\\Library\\Library.Service\\Library.Service.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\honor\\.nuget\\packages\\microsoft.aspnetcore.openapi\\8.0.0\\microsoft.aspnetcore.openapi.8.0.0.nupkg.sha512",
     "C:\\Users\\honor\\.nuget\\packages\\microsoft.entityframeworkcore\\8.0.8\\microsoft.entityframeworkcore.8.0.8.nupkg.sha512",

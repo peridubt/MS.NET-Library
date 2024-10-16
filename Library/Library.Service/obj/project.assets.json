@@ -1206,11 +1206,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\!MOAISdocs\\!Labs and lectures\\Labs 3rd year\\MS.NET-Library\\Library\\Library\\Library.csproj",
-      "projectName": "Library",
-      "projectPath": "D:\\!MOAISdocs\\!Labs and lectures\\Labs 3rd year\\MS.NET-Library\\Library\\Library\\Library.csproj",
+      "projectUniqueName": "D:\\!MOAISdocs\\!Labs and lectures\\Labs 3rd year\\MS.NET-Library\\Library\\Library.Service\\Library.Service.csproj",
+      "projectName": "Library.Service",
+      "projectPath": "D:\\!MOAISdocs\\!Labs and lectures\\Labs 3rd year\\MS.NET-Library\\Library\\Library.Service\\Library.Service.csproj",
       "packagesPath": "C:\\Users\\honor\\.nuget\\packages\\",
-      "outputPath": "D:\\!MOAISdocs\\!Labs and lectures\\Labs 3rd year\\MS.NET-Library\\Library\\Library\\obj\\",
+      "outputPath": "D:\\!MOAISdocs\\!Labs and lectures\\Labs 3rd year\\MS.NET-Library\\Library\\Library.Service\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\honor\\AppData\\Roaming\\NuGet\\NuGet.Config"
