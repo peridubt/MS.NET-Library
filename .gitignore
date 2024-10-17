@@ -1,5 +1,5 @@
-﻿/.idea/
-/Library.Library.bin/
-/Library.Library.obj/
-/Library.Library.idea/
-/shelf/
+﻿**/bin
+**/logs
+**/obj
+**/.vs
+**/.idea

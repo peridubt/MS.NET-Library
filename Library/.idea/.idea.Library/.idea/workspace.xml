@@ -111,7 +111,7 @@
       <option name="presentableId" value="Default" />
       <updated>1729055152371</updated>
       <workItem from="1729055153502" duration="116000" />
-      <workItem from="1729055318835" duration="1068000" />
+      <workItem from="1729055318835" duration="1446000" />
     </task>
     <task id="LOCAL-00001" summary="changed app architecture">
       <option name="closed" value="true" />
@@ -129,7 +129,15 @@
       <option name="project" value="LOCAL" />
       <updated>1729055859435</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="update project">
+      <option name="closed" value="true" />
+      <created>1729056532491</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1729056532491</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -142,6 +150,7 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="changed app architecture" />
     <MESSAGE value="installed necessary packages" />
-    <option name="LAST_COMMIT_MESSAGE" value="installed necessary packages" />
+    <MESSAGE value="update project" />
+    <option name="LAST_COMMIT_MESSAGE" value="update project" />
   </component>
 </project>
