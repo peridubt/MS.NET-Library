@@ -1,13 +1,24 @@
-using Library.Service.DI;
+using Library.Service.IoC;
+
+var configuration = new ConfigurationBuilder()
+    .AddJsonFile("appsettings.json", optional: false)
+    .Build();
+
 
 var builder = WebApplication.CreateBuilder(args);
 
-ApplicationConfigurator.ConfigureServices(builder);
+builder.Services.AddControllers();
+
+SerilogConfigurator.ConfigureService(builder);
+SwaggerConfigurator.ConfigureServices(builder.Services);
 
 var app = builder.Build();
 
-ApplicationConfigurator.ConfigureApplication(app);
+SerilogConfigurator.ConfigureApplication(app);
+SwaggerConfigurator.ConfigureApplication(app);
 
 app.UseHttpsRedirection();
+app.UseAuthorization();
+app.MapControllers();
 
 app.Run();
