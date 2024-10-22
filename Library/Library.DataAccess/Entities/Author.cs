@@ -7,7 +7,7 @@ public class Author : BaseEntity
 {
     public string FirstName { get; set; }
     public string LastName { get; set; }
-    public int PatronymicName { get; set; }
+    public string? PatronymicName { get; set; }
 
-    public virtual ICollection<Book> Books { get; set; }
+    public virtual ICollection<Book>? Books { get; set; }
 }

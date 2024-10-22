@@ -19,6 +19,6 @@ public class Book : BaseEntity
     public int? BookTypeId { get; set; }
     public BookType? BookType { get; set; }
 
-    public virtual ICollection<BookDownloads> BookDownloads { get; set; }
+    public virtual ICollection<BookDownloads>? BookDownloads { get; set; }
     public virtual ICollection<BookUpdates> BookUpdates { get; set; }
 }
