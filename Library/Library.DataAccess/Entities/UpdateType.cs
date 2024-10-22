@@ -6,5 +6,5 @@ namespace Library.DataAccess.Entities;
 public class UpdateType : BaseEntity
 {
     public string UpdateTypeName { get; set; }
-    public virtual ICollection<BookUpdates> BookUpdates { get; set; }
+    public virtual ICollection<BookUpdates>? BookUpdates { get; set; }
 }

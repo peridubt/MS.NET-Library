@@ -8,5 +8,5 @@ public class Publisher: BaseEntity
     public string PublisherName { get; set; }
     public int Code { get; set; }
     
-    public virtual ICollection<Book> Books { get; set; }
+    public virtual ICollection<Book>? Books { get; set; }
 }

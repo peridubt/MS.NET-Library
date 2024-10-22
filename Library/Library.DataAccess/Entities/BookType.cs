@@ -7,5 +7,5 @@ public class BookType: BaseEntity
 {
     public string BookTypeName { get; set; }
     
-    public virtual ICollection<Book> Books { get; set; }
+    public virtual ICollection<Book>? Books { get; set; }
 }
