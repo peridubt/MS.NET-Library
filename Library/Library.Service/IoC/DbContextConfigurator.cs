@@ -6,10 +6,15 @@ namespace Library.Service.IoC;
 
 public class DbContextConfigurator
 {
-    public static void ConfigureService(IServiceCollection services, LibrarySettings settings)
+    public static void ConfigureServices(WebApplicationBuilder builder)
     {
-        services.AddDbContextFactory<LibraryDbContext>(
-            options => { options.UseNpgsql(settings.LibraryDbContextConnectionString); },
+        var configuration = new ConfigurationBuilder()
+            .AddJsonFile("appsettings.json", optional: false)
+            .Build();
+        string connectionString = configuration.GetValue<string>("LibraryDbContext");
+
+        builder.Services.AddDbContextFactory<LibraryDbContext>(
+            options => { options.UseNpgsql(connectionString); },
             ServiceLifetime.Scoped);
     }
 
