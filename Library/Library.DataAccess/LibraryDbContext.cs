@@ -26,6 +26,7 @@ public class LibraryDbContext : DbContext
         modelBuilder.Entity<User>().HasIndex(x => x.ExternalId).IsUnique();
 
         // Employee - зависит от User
+        modelBuilder.Entity<Employee>().HasIndex(x => x.ExternalId).IsUnique();
 
         // Book
         modelBuilder.Entity<Book>().HasKey(x => x.Id);
