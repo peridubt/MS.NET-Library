@@ -15,7 +15,7 @@ public class LibraryDbContext : DbContext
     public DbSet<Publisher> Publishers { get; set; }
     public DbSet<UpdateType> UpdateTypes { get; set; }
 
-    public LibraryDbContext(DbContextOptions<LibraryDbContext> options) : base(options)
+    public LibraryDbContext(DbContextOptions options) : base(options)
     {
     }
 

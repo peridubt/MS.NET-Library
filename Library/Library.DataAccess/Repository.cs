@@ -1,11 +1,13 @@
-﻿using Library.DataAccess.Entities;
+﻿using System.Linq.Expressions;
+using Library.DataAccess.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Library.DataAccess;
 
 public class Repository<T> : IRepository<T> where T : BaseEntity
 {
-    public Repository(IDbContextFactory<DbContext> contextFactory)
+    private readonly IDbContextFactory<LibraryDbContext> _contextFactory;
+    public Repository(IDbContextFactory<LibraryDbContext> contextFactory)
     {
         _contextFactory = contextFactory;
     }
@@ -14,6 +16,12 @@ public class Repository<T> : IRepository<T> where T : BaseEntity
     {
         using var context = _contextFactory.CreateDbContext();
         return context.Set<T>();
+    }
+    
+    public IEnumerable<T> GetAll(Expression<Func<T, bool>> predicate)
+    {
+        using var dbContext = _contextFactory.CreateDbContext();
+        return dbContext.Set<T>().Where(predicate).ToList();
     }
 
     public T? GetById(int id)
@@ -57,6 +65,4 @@ public class Repository<T> : IRepository<T> where T : BaseEntity
         context.Entry(entity).State = EntityState.Deleted;
         context.SaveChanges();
     }
-
-    private readonly IDbContextFactory<DbContext> _contextFactory;
 }

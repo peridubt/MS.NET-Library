@@ -1,4 +1,4 @@
-using Library.Service.IoC;
+using Library.Service.DI;
 using Library.Service.Settings;
 
 var configuration = new ConfigurationBuilder()
@@ -9,20 +9,10 @@ var settings = LibrarySettingsReader.Read(configuration);
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers();
-
-DbContextConfigurator.ConfigureServices(builder);
-SerilogConfigurator.ConfigureService(builder);
-SwaggerConfigurator.ConfigureServices(builder.Services);
+ApplicationConfigurator.ConfigureServices(builder, settings);
 
 var app = builder.Build();
 
-SerilogConfigurator.ConfigureApplication(app);
-SwaggerConfigurator.ConfigureApplication(app);
-DbContextConfigurator.ConfigureApplication(app);
-
-app.UseHttpsRedirection();
-app.UseAuthorization();
-app.MapControllers();
+ApplicationConfigurator.ConfigureApplication(app);
 
 app.Run();
