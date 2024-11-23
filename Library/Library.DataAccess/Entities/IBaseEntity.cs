@@ -1,8 +1,7 @@
 ﻿namespace Library.DataAccess.Entities;
 
-public class BaseEntity
+public interface IBaseEntity
 {
-    
     public int Id { get; set; } 
 
     public Guid ExternalId { get; set; }

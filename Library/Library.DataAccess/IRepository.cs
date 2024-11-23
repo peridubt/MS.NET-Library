@@ -3,7 +3,7 @@ using Library.DataAccess.Entities;
 
 namespace Library.DataAccess;
 
-public interface IRepository<T> where T : BaseEntity
+public interface IRepository<T> where T : IBaseEntity
 {
     IQueryable<T> GetAll();
     IEnumerable<T> GetAll(Expression<Func<T, bool>> predicate);

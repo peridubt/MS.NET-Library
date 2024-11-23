@@ -4,9 +4,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Library.DataAccess;
 
-public class Repository<T> : IRepository<T> where T : BaseEntity
+public class Repository<T> : IRepository<T> where T : class, IBaseEntity
 {
     private readonly IDbContextFactory<LibraryDbContext> _contextFactory;
+
     public Repository(IDbContextFactory<LibraryDbContext> contextFactory)
     {
         _contextFactory = contextFactory;
@@ -17,7 +18,7 @@ public class Repository<T> : IRepository<T> where T : BaseEntity
         using var context = _contextFactory.CreateDbContext();
         return context.Set<T>();
     }
-    
+
     public IEnumerable<T> GetAll(Expression<Func<T, bool>> predicate)
     {
         using var dbContext = _contextFactory.CreateDbContext();
