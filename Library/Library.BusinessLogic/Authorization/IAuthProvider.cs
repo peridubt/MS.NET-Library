@@ -5,7 +5,6 @@ namespace Library.BusinessLogic.Authorization;
 
 public interface IAuthProvider
 {
-    // #TODO: Реализовать
-    Task RegisterUser(string email, string password);
+    Task<UserModel> RegisterUser(string email, string password);
     Task<TokensResponse> AuthorizeUser(string email, string password);
 }

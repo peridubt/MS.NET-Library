@@ -16,6 +16,6 @@ public class User : IdentityUser<int>, IBaseEntity
     public virtual ICollection<BookDownloads>? BookDownloads { get; set; }
 }
 
-public class UserRole : IdentityUserRole<int>
+public class UserRole : IdentityRole<int>
 {
 }

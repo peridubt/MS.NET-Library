@@ -1,6 +1,9 @@
-﻿using Duende.IdentityServer.Models;
+﻿using AutoMapper;
+using Duende.IdentityServer.Models;
 using IdentityModel.Client;
 using Library.BusinessLogic.Authorization.Entities;
+using Library.BusinessLogic.Exceptions;
+using Library.BusinessLogic.Users.Entities;
 using Library.DataAccess.Entities;
 using Microsoft.AspNetCore.Identity;
 
@@ -12,27 +15,28 @@ public class AuthProvider(
     IHttpClientFactory httpClientFactory,
     string identityServerUri,
     string clientId,
-    string clientSecret) : IAuthProvider
+    string clientSecret,
+    IMapper mapper) : IAuthProvider
 {
     public async Task<TokensResponse> AuthorizeUser(string email, string password)
     {
         var user = await userManager.FindByEmailAsync(email); // IRepository<User>
         if (user is null)
         {
-            throw new Exception(); // UserNotFoundException, BusinessLogicException(Code.UserNotFound)
+            throw new BusinessLogicException(ResultCode.UserNotFound);
         }
 
         var verificationPasswordResult = await signInManager.CheckPasswordSignInAsync(user, password, false);
         if (!verificationPasswordResult.Succeeded)
         {
-            throw new Exception(); // UserNotFoundException, BusinessLogicException(Code.UserNotFound)
+            throw new BusinessLogicException(ResultCode.EmailOrPasswordIsIncorrect);
         }
 
         var client = httpClientFactory.CreateClient();
         var discoveryDoc = await client.GetDiscoveryDocumentAsync(identityServerUri);
         if (discoveryDoc.IsError)
         {
-            throw new Exception();
+            throw new BusinessLogicException(ResultCode.IdentityServerError);
         }
 
         var tokenResponse = await client.RequestPasswordTokenAsync(new PasswordTokenRequest
@@ -41,7 +45,7 @@ public class AuthProvider(
             GrantType = GrantType.ResourceOwnerPassword,
             ClientId = clientId,
             ClientSecret = clientSecret,
-            UserName = user.UserName,
+            UserName = user.UserName!,
             Password = password,
             Scope = "api offline_access"
         });
@@ -58,15 +62,27 @@ public class AuthProvider(
         };
     }
 
-    // #TODO: Реализовать
-    public async Task RegisterUser(string email, string password) // Реализовать!
+    public async Task<UserModel> RegisterUser(string email, string password)
     {
+        var existingUser = await userManager.FindByEmailAsync(email);
+        if (existingUser != null)
+        {
+            throw new BusinessLogicException(ResultCode.UserAlreadyExists);
+        }
+
         var user = new User
         {
             Email = email,
-            UserName = email,
+            Login = email
         };
-        
-        var createUserResult = await userManager.CreateAsync(user, password);
+
+        var result = await userManager.CreateAsync(user, password);
+        if (!result.Succeeded)
+        {
+            throw new BusinessLogicException(ResultCode.UserCreationFailure);
+        }
+
+        var createdUser = await userManager.FindByEmailAsync(email);
+        return mapper.Map<UserModel>(createdUser);
     }
 }

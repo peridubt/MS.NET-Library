@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Library.Service.IoC;
 
-public class ServicesConfigurator
+public static class ServicesConfigurator
 {
     public static void ConfigureServices(IServiceCollection services, LibrarySettings settings)
     {
@@ -42,7 +42,8 @@ public class ServicesConfigurator
                 x.GetRequiredService<IHttpClientFactory>(),
                 settings.IdentityServerUri!,
                 settings.ClientId!,
-                settings.ClientSecret!
+                settings.ClientSecret!,
+                x.GetRequiredService<IMapper>()
             ));
     }
 }

@@ -20,11 +20,18 @@ public class AuthController(IAuthProvider authProvider) : ControllerBase
         }
     }
 
-    // #TODO: Реализовать
     [HttpPost]
     [Route("register")]
-    public async Task<IActionResult> RegisterUser(string email, string password) 
+    public async Task<IActionResult> RegisterUser(string email, string password)
     {
-        throw new NotImplementedException();
+        try
+        {
+            var user = await authProvider.RegisterUser(email, password);
+            return Ok(user);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
     }
 }
